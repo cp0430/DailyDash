@@ -5,23 +5,25 @@ function Register() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');  // Add error state
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
         try {
-            const response = await axios.post('http://localhost:3000/register', {
+            const response = await axios.post(`${import.meta.env.VITE_URL}/register`, {
                 username,
                 email,
                 password
             });
-            alert(response.data.msg);
+            console.log(response.data.msg); // You may want to display this message on success
         } catch (error) {
-            alert(error.response?.data?.msg || "Error registering");
+            setError(error.response?.data?.msg || "Error registering");
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <h2>Register</h2>
             <input 
                 type="text" 
@@ -45,6 +47,7 @@ function Register() {
                 required 
             />
             <button type="submit">Register</button>
+            {error && <p style={{ color: "red" }}>{error}</p>}
         </form>
     );
 }
