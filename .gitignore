@@ -1,0 +1,6 @@
+# Node modules
+node_modules/
+
+# Other IDE and system files
+.DS_Store
+.vscode/
