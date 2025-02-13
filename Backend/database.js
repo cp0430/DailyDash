@@ -17,7 +17,7 @@ const todoSchema = new mongoose.Schema({
 
 const getTodoModel = (username) => {
     const modelName = `${username.toLowerCase()}`;
-    console.log("model name ", modelName);
+    // console.log("model name ", modelName);
     if (mongoose.models[modelName]) {
         return mongoose.models[modelName];
     }
