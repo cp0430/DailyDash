@@ -36,6 +36,7 @@ A full-stack **DailyDash** application built with **React** and **Vite** for the
 │   
 │
 ├── docker-compose.yml                   # Docker Compose configuration
+├── .env.example                         # Example environment variables file
 └── README.md                             # Project documentation and setup guide
 ```
 
@@ -80,18 +81,14 @@ https://github.com/cp0430/DailyDash.git
 cd DailyDash
 ```
 
-### **2️⃣ Export Environment Variables**
-Instead of using `.env` files, export the required variables in your terminal or shell.
+### **2️⃣ Create an Environment File (.env)**
+Create a `.env` file in the root of the project or provide a custom location later when using Docker Compose. Refer to `.env.example` for the required variables.
 
-#### **Frontend:**
-```sh
-export VITE_URL=http://localhost:3000
+#### **Example .env File**
 ```
-
-#### **Backend:**
-```sh
-export MONGODB_URI=mongodb://your-db-uri
-export SECRET_KEY=your-secret-key
+MONGODB_URI=mongodb://your-db-uri
+SECRET_KEY=your-secret-key
+VITE_URL=http://localhost:3000
 ```
 
 ---
@@ -120,7 +117,7 @@ node server.js
 Ensure Docker is installed and running.
 
 ```sh
-docker-compose up -d --build
+docker-compose --env-file /path/to/your/.env up -d --build
 ```
 
 To stop the containers:
